@@ -13,6 +13,36 @@ class Paging {
     private $pageCount; //总页数
     private $list; //分页查询结果
     private $obj; //查询条件
+    private $phpPageName;
+
+    public function showPaging(){
+        echo "第".$this->pageNow."页";
+        if($this->pageNow>1){
+            $prePage = $this->pageNow-1;
+            echo "<a href='".$this->phpPageName.".php?pageNow=$prePage'>上一页</a>&nbsp;";
+        }
+        if($this->pageNow<$this->pageCount){
+            $nextPage = $this->pageNow+1;
+            echo "<a href='".$this->phpPageName.".php?pageNow=$nextPage'>下一页</a>&nbsp;";
+        }
+        echo "共".$this->rowCount."条数据.每页".$this->pageSize."条,共".$this->pageCount."页</br>";
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhpPageName()
+    {
+        return $this->phpPageName;
+    }
+
+    /**
+     * @param mixed $phpPageName
+     */
+    public function setPhpPageName($phpPageName)
+    {
+        $this->phpPageName = $phpPageName;
+    }
 
     /**
      * @return mixed

@@ -23,6 +23,7 @@
     $employeeService = new EmployeeService();
     $paging = new Paging();
     $paging->setPageNow($pageNow);
+    $paging->setPhpPageName("empList");
     $paging = $employeeService->findPageAllEmployees($paging);
 
     //$list = $employeeService->findAllEmployees($pageNow,$pageSize);
@@ -41,12 +42,10 @@
     echo "</table>";
 
     //$rowCount = $employeeService->countAllEmployees();
-    $rowCount = $paging->getRowCount();
-    $pageCount = $paging->getPageCount();
     /*for($i = 1; $i <= $pageCount; $i++){
         echo "<a href='empList.php?pageNow=$i'>$i</a>&nbsp;";
     }*/
-    echo "第".$pageNow."页";
+    /*echo "第".$pageNow."页";
     if($pageNow>1){
         $prePage = $pageNow-1;
         echo "<a href='empList.php?pageNow=$prePage'>上一页</a>&nbsp;";
@@ -55,7 +54,8 @@
         $nextPage = $pageNow+1;
         echo "<a href='empList.php?pageNow=$nextPage'>下一页</a>&nbsp;";
     }
-    echo "共".$rowCount."条数据.每页".$paging->getPageSize()."条,共".$pageCount."页</br>";
+    echo "共".$rowCount."条数据.每页".$paging->getPageSize()."条,共".$pageCount."页</br>";*/
+    $paging->showPaging();
 ?>
 </br>
 <form action="empList.php">

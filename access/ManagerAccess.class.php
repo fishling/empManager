@@ -16,6 +16,10 @@ class ManagerAccess extends BasicAccess{
     }
 
     public function constructReturnArr($res){
+
+    }
+
+    public function constructReturnOne($res){
         if ($row = mysql_fetch_assoc($res)) {
             $user = new Manager();
             $user->setName($row['name']);

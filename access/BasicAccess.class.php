@@ -26,6 +26,16 @@ abstract class BasicAccess {
         return $this->constructReturnArr($res);
     }
 
+    public function findOneObj($obj){
+        $sql = $this->buildFindSql($obj);
+        $sql = $sql." limit 0,1";
+        $this->getConnection()->connect();
+        $res = $this->getConnection()->excute_dql($sql);
+        $this->getConnection()->closeConnection();
+
+        return $this->constructReturnOne($res);
+    }
+
     public function countObjs($obj){
         $sql = $this->buildCountSql($obj);
         $this->getConnection()->connect();
@@ -51,6 +61,8 @@ abstract class BasicAccess {
     public abstract function constructReturnArr($res);
 
     public abstract function buildCountSql($obj);
+
+    public abstract function constructReturnOne($res);
 
     /**
      * @return MysqlTool

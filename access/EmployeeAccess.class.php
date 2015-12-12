@@ -58,4 +58,8 @@ class EmployeeAccess extends BasicAccess{
         }
         return $sql;
     }
+
+    public function constructReturnOne($res){
+
+    }
 }
