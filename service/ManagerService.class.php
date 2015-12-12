@@ -15,7 +15,7 @@ class ManagerService {
     }
 
     public function checkLogin($manager){
-        $user = $this->managerAccess->findUserByCode($manager->getCode());
+        $user = $this->managerAccess->findObjs($manager->getCode(),null,null);
         if(isset($user)){
             if($user->getPassword() == md5($manager->getPassword())){
                 return true;

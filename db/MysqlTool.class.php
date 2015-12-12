@@ -15,7 +15,7 @@ class MysqlTool {
     private $conn;
 
     public function __construct(){
-        $this->connect();
+        //$this->connect();
     }
 
     public function connect(){

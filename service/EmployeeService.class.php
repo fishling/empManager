@@ -14,7 +14,15 @@ class EmployeeService {
         $this->employeeAccess = new EmployeeAccess();
     }
 
-    public function findAllEmployees(){
-        return $this->employeeAccess->findEmployees(null);
+    public function findAllEmployees($pageNow,$pageSize){
+        return $this->employeeAccess->findObjs(null,$pageNow,$pageSize);
+    }
+
+    public function countAllEmployees(){
+        return $this->employeeAccess->countObjs(null);
+    }
+
+    public function findPageAllEmployees($paging){
+        return $this->employeeAccess->findPageAllObjs($paging);
     }
 }

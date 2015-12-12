@@ -6,17 +6,12 @@
  * Time: 11:55
  */
 
-require_once './db/MysqlTool.class.php';
+require_once 'BasicAccess.class.php';
 require_once './obj/Employee.class.php';
-class EmployeeAccess {
-    private $connection;
-
-    public function __construct(){
-        $this->connection = new MysqlTool();
-    }
-
-    public function findEmployees($employee){
+class EmployeeAccess extends BasicAccess{
+    public function buildFindSql($obj){
         $sql = "select name,code,salary,grade from employee where 1= 1";
+        $employee = $obj;
         if($employee != null){
             if($employee->getName() != null && strlen($employee->getName()) > 0){
                 $sql = $sql." and name like '%".$employee->getName()."%'";
@@ -28,8 +23,10 @@ class EmployeeAccess {
                 $sql = $sql." and grade = '".$employee->getGrade()."'";
             }
         }
-        $res = $this->connection->excute_dql($sql);
+        return $sql;
+    }
 
+    public function constructReturnArr($res){
         $arr = Array();
         $i = 0;
         while($row = mysql_fetch_assoc($res)) {
@@ -41,8 +38,24 @@ class EmployeeAccess {
             $arr[$i] = $emp;
             $i++;
         }
-        $this->connection->releaseRes($res);
-        $this->connection->closeConnection();
+        $this->getConnection()->releaseRes($res);
         return $arr;
+    }
+
+    public function buildCountSql($obj){
+        $sql = "select count(1) from employee where 1= 1";
+        $employee = $obj;
+        if($employee != null){
+            if($employee->getName() != null && strlen($employee->getName()) > 0){
+                $sql = $sql." and name like '%".$employee->getName()."%'";
+            }
+            if($employee->getCode() != null && strlen($employee->getCode()) > 0){
+                $sql = $sql." and code = '".$employee->getCode()."'";
+            }
+            if($employee->getGrade() != null && strlen($employee->getGrade()) > 0){
+                $sql = $sql." and grade = '".$employee->getGrade()."'";
+            }
+        }
+        return $sql;
     }
 }
