@@ -1,3 +1,6 @@
+<?php
+    require_once 'cookieProcess.php';
+?>
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html;charset=utf-8" >
@@ -7,8 +10,9 @@
         <h1>管理员登录</h1>
         <form action="loginProcess.php" method="post">
             <table>
-                <tr><td>用户名:</td><td><input type="text" name="code"></td></tr>
+                <tr><td>用户名:</td><td><input type="text" name="code" value="<?php echo getCookieValue('username') ?>"></td></tr>
                 <tr><td>密&nbsp;码:</td><td><input type="password" name="password"></td></tr>
+                <tr><td colspan="2">保存用户名<input type="checkbox" name="keep"></td></tr>
                 <tr>
                     <td><input type="submit" value="登录"></td>
                     <td><input type="reset" value="重新输入"></td>
