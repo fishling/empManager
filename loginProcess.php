@@ -23,6 +23,8 @@
     $manager->setPassword($password);
     $managerService = new ManagerService();
     if($managerService->checkLogin($manager)){
+        session_start();
+        $_SESSION['userInfo']=$manager;
         header("Location: main.php?user=$code");
     }else{
         header("Location: login.php?errorno=1");

@@ -5,6 +5,10 @@
  * Date: 2015/12/11
  * Time: 10:24
  */
+    require_once 'sessionProcess.php';
+
+    checkLoginInfo();
+
     echo $_GET['user'].'登录成功';
     require_once 'timeProcess.php';
     getLastVisitTime();

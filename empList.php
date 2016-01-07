@@ -12,6 +12,9 @@
  */
     require_once './service/EmployeeService.class.php';
     require_once './obj/Paging.class.php';
+    require_once 'sessionProcess.php';
+
+    checkLoginInfo();
 
     if(!empty($_REQUEST['pageNow'])) {
         $pageNow = $_REQUEST['pageNow'];
